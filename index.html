@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- FullCalendar CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css' rel='stylesheet' />
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js'></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dark-mode-toggle">
+        <span class="sun-icon">🌞</span>
+        <label class="switch">
+            <input type="checkbox" id="dark-mode-toggle">
+            <span class="slider"></span>
+        </label>
+        <span class="moon-icon">🌙</span>
+    </div>
+
+    <div class="container">
+        <div class="calendar-container">
+            <div id="calendar"></div>
+        </div>
+
+        <div class="task-list">
+            <h2>Your Tasks</h2>
+
+            <!-- Task Filters -->
+            <div class="task-filters">
+                <button onclick="filterTasks('all')">All</button>
+                <button onclick="filterTasks('completed')">Completed</button>
+                <button onclick="filterTasks('priority-red')">Important</button>
+                <button onclick="sortTasksByPriority()">Sort by Priority</button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="task-progress">
+                <h3>Progress</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+            </div>
+
+            <ul id="task-list"></ul>
+        </div>
+    </div>
+
+    <!-- Modal for Adding New Task -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Task</h2>
+            <p id="selected-date">No date selected</p>
+            <form id="task-form">
+                <input type="text" id="task-input" placeholder="Task title" required />
+                <input type="time" id="start-time" required />
+                <input type="time" id="end-time" required />
+                <select id="task-importance">
+                    <option value="green">Okay</option>
+                    <option value="yellow">Warning</option>
+                    <option value="red">Important</option>
+                </select>
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="other">Other</option>
+                </select>
+                <label for="recurring">Repeat:</label>
+                <select id="recurring">
+                    <option value="none">None</option>
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+                <label for="clock-format">Choose Time Format:</label>
+                <select id="clock-format">
+                    <option value="12">12-hour</option>
+                    <option value="24">24-hour</option>
+                </select>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
